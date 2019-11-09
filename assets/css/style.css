@@ -1,0 +1,30 @@
+body{
+    background-image: url("https://www.gannett-cdn.com/-mm-/3957e8101d1718b304ce52b06514c335bdb708a1/c=0-590-3289-2440/local/-/media/Appleton/2014/07/26/trivia.jpg?width=3200&height=1680&fit=crop");
+    background-size: 100%;
+}
+
+.container{
+background-color: whitesmoke;
+height:100%;
+padding: 5px;
+margin-top: 10px;
+
+}
+
+#title{
+    margin: 30px 20% 0px 20%;
+    text-align: center;
+    color: darkblue;
+    width: 550px;
+    padding: 10px;
+    background-image: linear-gradient( 180deg, rgb(178, 199, 60), rgb(233, 236, 12));
+    border: 5px solid darkblue;
+
+}
+
+#startID{
+    align-self: center;
+    margin: 200px 20% 150px 40%;
+    width:150px;
+    height:75px;
+      }

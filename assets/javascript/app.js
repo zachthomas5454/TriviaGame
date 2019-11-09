@@ -91,9 +91,11 @@ newQuestion(myQuestions, quizSection, resultsSection, doneBtn);
 
 function newQuestion(questions, quizSection, resultsSection, doneBtn) {
 
+    // function to populate all questions along with the answer options in the <div> element
     function showQuestions(questions, quizSection) {
         var output = [];
         var answers;
+
 
         for (var i = 0; i < questions.length; i++) {
 
@@ -118,7 +120,7 @@ function newQuestion(questions, quizSection, resultsSection, doneBtn) {
 
         quizSection.innerHTML = output.join('');
     }
-
+    // function to calculate and populate total questions answered right, wrong and unanswered <div> element
     function showResults(questions, quizSection, resultsSection) {
 
         var answerSection = quizSection.querySelectorAll('.answers');
@@ -127,45 +129,79 @@ function newQuestion(questions, quizSection, resultsSection, doneBtn) {
         var ansWrong = 0;
         var ansLeft = 0;
 
+
+
+
         for (var i = 0; i < questions.length; i++) {
 
             userAnswer = (answerSection[i].querySelector('input[name=question' + i + ']:checked') || {}).value;
             if (userAnswer === questions[i].correctAnswer) {
                 ansCorrect++;
             }
-            else if (userAnswer !== questions[i].correctAnswer ) {
+            else if ((userAnswer !== questions[i].correctAnswer) && (userAnswer === "a" || userAnswer === "b" || userAnswer === "c" || userAnswer === "d")) {
                 ansWrong++;
             }
-            else {
+            else if ((userAnswer !== questions[i].correctAnswer) && (userAnswer !== "a" && userAnswer !== "b" && userAnswer !== "c" && userAnswer !== "d")) {
                 ansLeft++;
             }
         }
-        resultsSection.innerHTML = ansCorrect + ' :corr   ' + ansWrong + ' :wrong   ' + ansLeft + ' :left   ';
+        resultsSection.innerHTML = ' Correct:   ' + ansCorrect + '<br><br>' + ' Wrong:   ' + ansWrong + '<br><br>' + ' Unanswered:   ' + ansLeft;
 
     }
+
+    //timer section
+    var number = 50;
+    var intervalId;
+
+    //Timer runs with the desired interval value
+    function startTimer() {
+        clearInterval(intervalId);
+        intervalId = setInterval(decrement, 1000);
+        running = true;
+    }
+    //Timer decreases the counter and executes Stop function when it reaches 0
+    function decrement() {
+        number--;
+        $("#timeleft").html("<h2>" + "Time Left:     " + number + "</h2>");
+        if (number === 0) {
+            stop();
+        }
+    }
+
+    //calling startPage function
     function startPage() {
         $("#startID").show();
-
+        $("#submitID").hide();
     }
+    // first function to execute when page is refereshed (Step 1)
     startPage();
 
-    function hideQuiz() {
-        $("#startID").hide();
-    }
-
-
-
+    // executes when Start button is clicked (Step 2)
     startBtn.onclick = function () {
         hideQuiz();
         showQuestions(questions, quizSection);
+        $("#submitID").show();
+    }
+
+    // hides Question page and timer and shows Results (After answering questions and before timer ends)
+    doneBtn.onclick = function () {
+        stop();
+    }
+    // hides Start button and starts timer
+    function hideQuiz() {
+        $("#startID").hide();
+        startTimer();
     }
 
 
-    doneBtn.onclick = function () {
-        hideQuiz();
+    // Function closes all the Question Answer display and displays the final result
+    //Activates when timer is done or Done button is selected
+    function stop() {
+        clearInterval(intervalId);
+        running = false;
         showResults(questions, quizSection, resultsSection);
         $("#questionID").hide();
         $("#submitID").hide();
+        $("#timeleft").hide();
     }
-
 }
