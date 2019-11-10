@@ -4,15 +4,16 @@ body{
 }
 
 .container{
-background-color: whitesmoke;
+    background-image: linear-gradient( -45deg, whitesmoke, gray);
 height:100%;
 padding: 5px;
-margin-top: 10px;
-
+margin-top: 20px;
+margin-bottom: 20px;
+border: 5px solid darkred;
 }
 
 #title{
-    margin: 30px 20% 0px 20%;
+    margin: 30px 20% 0px 25%;
     text-align: center;
     color: darkblue;
     width: 550px;
@@ -23,8 +24,40 @@ margin-top: 10px;
 }
 
 #startID{
-    align-self: center;
-    margin: 200px 20% 150px 40%;
+    margin: 200px 20% 150px 42%;
     width:150px;
     height:75px;
+    font-size: x-large;
+      }
+
+#submitID{
+    margin: 0px 20% 30px 42%;
+    width:150px;
+    height:75px;
+    font-size: x-large;
+      }
+
+#questionID{
+    text-align: center;
+    font-weight: bold;
+    font-size: large;
+      }
+
+      .question{
+    font-size:30px ;
+      }
+
+      .answers{
+        font-size:20px ;
+          }
+
+#resultID {
+    margin-top: 50px;
+    text-align: center;
+    font-weight: bold;
+    font-size: x-large;
+      }
+
+#timeleft  {
+        text-align: center;
       }

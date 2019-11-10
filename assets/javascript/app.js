@@ -104,8 +104,8 @@ function newQuestion(questions, quizSection, resultsSection, doneBtn) {
             for (letter in questions[i].answers) {
 
                 answers.push(
-                    '<label>'
-                    + '<input type="radio" name="question' + i + '" value="' + letter + '">'
+                    "    " + '<label>'
+                    + '<input type="radio" name="question' + i + '" value="' + letter + '">' + "  " 
                     + letter + ': '
                     + questions[i].answers[letter]
                     + '</label>'
@@ -113,8 +113,8 @@ function newQuestion(questions, quizSection, resultsSection, doneBtn) {
             }
 
             output.push(
-                '<div class="question">' + questions[i].question + '</div>'
-                + '<div class="answers">' + answers.join('') + '</div>'
+                '<div class="question" >' + questions[i].question + '</div>'
+                + '<div class="answers">' + answers.join('') + '</div>' + '<br>'
             );
         }
 
@@ -145,12 +145,12 @@ function newQuestion(questions, quizSection, resultsSection, doneBtn) {
                 ansLeft++;
             }
         }
-        resultsSection.innerHTML = ' Correct:   ' + ansCorrect + '<br><br>' + ' Wrong:   ' + ansWrong + '<br><br>' + ' Unanswered:   ' + ansLeft;
+        resultsSection.innerHTML = 'All Done !!' + '<br><br>' + ' Correct:   ' + ansCorrect + '<br><br>' + ' Wrong:   ' + ansWrong + '<br><br>' + ' Unanswered:   ' + ansLeft;
 
     }
 
     //timer section
-    var number = 50;
+    var number = 100;
     var intervalId;
 
     //Timer runs with the desired interval value
@@ -172,6 +172,7 @@ function newQuestion(questions, quizSection, resultsSection, doneBtn) {
     function startPage() {
         $("#startID").show();
         $("#submitID").hide();
+        $("#questionID").hide();
     }
     // first function to execute when page is refereshed (Step 1)
     startPage();
@@ -181,6 +182,7 @@ function newQuestion(questions, quizSection, resultsSection, doneBtn) {
         hideQuiz();
         showQuestions(questions, quizSection);
         $("#submitID").show();
+        $("#questionID").show();
     }
 
     // hides Question page and timer and shows Results (After answering questions and before timer ends)
